@@ -20,3 +20,21 @@ This repository implements an automated pipeline that:
 1. **Build the image**  
    ```bash
    docker build -t mlops-pipeline .
+
+## Start and Run in Docker
+    ```
+    docker-compose down --volumes --remove-orphans   
+    docker-compose build    
+    docker-compose up -d 
+    docker-compose run --rm webserver airflow db init 
+    docker-compose run --rm webserver airflow users create \
+     --username admin \
+     --firstname Admin \
+     --lastname User \
+     --role Admin \
+     --email admin@example.com \
+     --password admin
+    docker-compose up -d webserver scheduler 
+    ```
+
+Open localhost:8080 in your browser to access the Airflow UI, logging in with admin, admin and run the `mlops_pipeline` DAG.

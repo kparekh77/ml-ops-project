@@ -1,0 +1,50 @@
+[2025-07-18T12:26:54.895+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.feature_engineering manual__2025-07-18T12:19:22.634677+00:00 [queued]>
+[2025-07-18T12:26:54.912+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.feature_engineering manual__2025-07-18T12:19:22.634677+00:00 [queued]>
+[2025-07-18T12:26:54.913+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T12:26:54.914+0000] {taskinstance.py:1284} INFO - Starting attempt 2 of 2
+[2025-07-18T12:26:54.916+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T12:26:54.937+0000] {taskinstance.py:1304} INFO - Executing <Task(BashOperator): feature_engineering> on 2025-07-18 12:19:22.634677+00:00
+[2025-07-18T12:26:54.950+0000] {standard_task_runner.py:55} INFO - Started process 469 to run task
+[2025-07-18T12:26:54.954+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'mlops_retrain_pipeline', 'feature_engineering', 'manual__2025-07-18T12:19:22.634677+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/retrain_dag.py', '--cfg-path', '/tmp/tmpfulcg_k6']
+[2025-07-18T12:26:54.958+0000] {standard_task_runner.py:83} INFO - Job 6: Subtask feature_engineering
+[2025-07-18T12:26:55.073+0000] {task_command.py:389} INFO - Running <TaskInstance: mlops_retrain_pipeline.feature_engineering manual__2025-07-18T12:19:22.634677+00:00 [running]> on host 0a70033a54ea
+[2025-07-18T12:26:55.130+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=mlops_retrain_pipeline
+AIRFLOW_CTX_TASK_ID=feature_engineering
+AIRFLOW_CTX_EXECUTION_DATE=2025-07-18T12:19:22.634677+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-07-18T12:19:22.634677+00:00
+[2025-07-18T12:26:55.133+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-07-18T12:26:55.135+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python /app/scripts/engineer.py mode=feature']
+[2025-07-18T12:26:55.145+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T12:26:57.277+0000] {subprocess.py:93} INFO - /app/scripts/engineer.py:6: UserWarning:
+[2025-07-18T12:26:57.278+0000] {subprocess.py:93} INFO - The version_base parameter is not specified.
+[2025-07-18T12:26:57.279+0000] {subprocess.py:93} INFO - Please specify a compatability version level, or None.
+[2025-07-18T12:26:57.280+0000] {subprocess.py:93} INFO - Will assume defaults for version 1.1
+[2025-07-18T12:26:57.280+0000] {subprocess.py:93} INFO -   @hydra.main(config_path="../config", config_name="config")
+[2025-07-18T12:26:57.691+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.9/site-packages/hydra/_internal/hydra.py:119: UserWarning: Future Hydra versions will no longer change working directory at job runtime by default.
+[2025-07-18T12:26:57.728+0000] {subprocess.py:93} INFO - See https://hydra.cc/docs/1.2/upgrades/1.1_to_1.2/changes_to_job_working_dir/ for more information.
+[2025-07-18T12:26:57.731+0000] {subprocess.py:93} INFO -   ret = run_job(
+[2025-07-18T12:26:57.735+0000] {subprocess.py:93} INFO - Error executing job with overrides: ['mode=feature']
+[2025-07-18T12:26:57.914+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-07-18T12:26:57.918+0000] {subprocess.py:93} INFO -   File "/app/scripts/engineer.py", line 9, in main
+[2025-07-18T12:26:57.921+0000] {subprocess.py:93} INFO -     cfg.data.raw_path   = to_absolute_path(cfg.data.raw_path)
+[2025-07-18T12:26:57.927+0000] {subprocess.py:93} INFO - omegaconf.errors.ConfigAttributeError: Key 'raw_path' is not in struct
+[2025-07-18T12:26:57.931+0000] {subprocess.py:93} INFO -     full_key: data.raw_path
+[2025-07-18T12:26:57.936+0000] {subprocess.py:93} INFO -     object_type=dict
+[2025-07-18T12:26:57.942+0000] {subprocess.py:93} INFO - 
+[2025-07-18T12:26:57.945+0000] {subprocess.py:93} INFO - Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+[2025-07-18T12:26:58.378+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-07-18T12:26:58.440+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/bash.py", line 196, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-07-18T12:26:58.453+0000] {taskinstance.py:1322} INFO - Marking task as FAILED. dag_id=mlops_retrain_pipeline, task_id=feature_engineering, execution_date=20250718T121922, start_date=20250718T122654, end_date=20250718T122658
+[2025-07-18T12:26:58.493+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 6 for task feature_engineering (Bash command failed. The command returned a non-zero exit code 1.; 469)
+[2025-07-18T12:26:58.537+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2025-07-18T12:26:58.689+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

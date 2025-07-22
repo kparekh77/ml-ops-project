@@ -1,0 +1,34 @@
+[2025-07-18T15:51:00.641+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T15:50:59.560666+00:00 [queued]>
+[2025-07-18T15:51:00.647+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T15:50:59.560666+00:00 [queued]>
+[2025-07-18T15:51:00.647+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T15:51:00.647+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 2
+[2025-07-18T15:51:00.647+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T15:51:00.655+0000] {taskinstance.py:1304} INFO - Executing <Task(BashOperator): ingest_data> on 2025-07-18 15:50:59.560666+00:00
+[2025-07-18T15:51:00.659+0000] {standard_task_runner.py:55} INFO - Started process 216 to run task
+[2025-07-18T15:51:00.662+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'mlops_retrain_pipeline', 'ingest_data', 'manual__2025-07-18T15:50:59.560666+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/retrain_dag.py', '--cfg-path', '/tmp/tmpcin7nfw_']
+[2025-07-18T15:51:00.664+0000] {standard_task_runner.py:83} INFO - Job 3: Subtask ingest_data
+[2025-07-18T15:51:00.717+0000] {task_command.py:389} INFO - Running <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T15:50:59.560666+00:00 [running]> on host 5e35c0550fc7
+[2025-07-18T15:51:00.761+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=mlops_retrain_pipeline
+AIRFLOW_CTX_TASK_ID=ingest_data
+AIRFLOW_CTX_EXECUTION_DATE=2025-07-18T15:50:59.560666+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-07-18T15:50:59.560666+00:00
+[2025-07-18T15:51:00.762+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-07-18T15:51:00.770+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python /app/scripts/ingest.py mode=ingest']
+[2025-07-18T15:51:00.777+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T15:51:00.877+0000] {subprocess.py:93} INFO - python: can't open file '/app/scripts/ingest.py': [Errno 2] No such file or directory
+[2025-07-18T15:51:00.881+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-07-18T15:51:00.887+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/bash.py", line 196, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-07-18T15:51:00.891+0000] {taskinstance.py:1322} INFO - Marking task as UP_FOR_RETRY. dag_id=mlops_retrain_pipeline, task_id=ingest_data, execution_date=20250718T155059, start_date=20250718T155100, end_date=20250718T155100
+[2025-07-18T15:51:00.897+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 3 for task ingest_data (Bash command failed. The command returned a non-zero exit code 2.; 216)
+[2025-07-18T15:51:00.926+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2025-07-18T15:51:00.942+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

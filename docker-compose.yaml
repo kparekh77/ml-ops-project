@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  webserver:
+    image: apache/airflow:2.5.0-python3.9
+    working_dir: /app                              # <-- hydra’s ORIGINAL cwd
+    depends_on:
+      - postgres
+    environment:
+      PYTHONPATH: /app
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__WEBSERVER__RBAC: "True"
+      AIRFLOW__WEBSERVER__AUTHENTICATE: "True"
+      AIRFLOW__WEBSERVER__AUTH_BACKEND: airflow.www.auth.backends.password_auth
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow_dags:/opt/airflow/dags:ro
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./scripts:/app/scripts:ro
+      - ./src:/app/src:ro
+      - ./config:/app/config:ro
+      - ./data:/app/data:ro                     # <-- raw/features live here
+      - ./requirements.txt:/app/requirements.txt:ro
+    command: >
+      bash -c "pip install --no-cache-dir -r /app/requirements.txt &&
+               exec airflow webserver"
+
+  scheduler:
+    image: apache/airflow:2.5.0-python3.9
+    working_dir: /app
+    depends_on:
+      - postgres
+    environment:
+      PYTHONPATH: /app
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow_dags:/opt/airflow/dags:ro
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./scripts:/app/scripts:ro
+      - ./src:/app/src:ro
+      - ./config:/app/config:ro
+      - ./data:/app/data:ro
+      - ./requirements.txt:/app/requirements.txt:ro
+    command: >
+      bash -c "pip install --no-cache-dir -r /app/requirements.txt &&
+               exec airflow scheduler"
+
+volumes:
+  postgres_data:

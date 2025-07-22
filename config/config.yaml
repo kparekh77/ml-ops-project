@@ -1,0 +1,18 @@
+mode: ingest
+
+data:
+  raw_data_path: "data/raw/adult.csv"
+  processed_data_path: "data/processed/processed.pkl"
+
+model:
+  params:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "adult-income-classification"
+
+drift:
+  threshold: 0.05

@@ -1,0 +1,37 @@
+[2025-07-18T14:07:42.665+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:07:41.957517+00:00 [queued]>
+[2025-07-18T14:07:42.671+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:07:41.957517+00:00 [queued]>
+[2025-07-18T14:07:42.671+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T14:07:42.674+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 2
+[2025-07-18T14:07:42.675+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T14:07:42.681+0000] {taskinstance.py:1304} INFO - Executing <Task(BashOperator): ingest_data> on 2025-07-18 14:07:41.957517+00:00
+[2025-07-18T14:07:42.684+0000] {standard_task_runner.py:55} INFO - Started process 211 to run task
+[2025-07-18T14:07:42.688+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'mlops_retrain_pipeline', 'ingest_data', 'manual__2025-07-18T14:07:41.957517+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/retrain_dag.py', '--cfg-path', '/tmp/tmprnx16m4k']
+[2025-07-18T14:07:42.691+0000] {standard_task_runner.py:83} INFO - Job 3: Subtask ingest_data
+[2025-07-18T14:07:42.736+0000] {task_command.py:389} INFO - Running <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:07:41.957517+00:00 [running]> on host f6bb4ae5b7b3
+[2025-07-18T14:07:42.771+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=mlops_retrain_pipeline
+AIRFLOW_CTX_TASK_ID=ingest_data
+AIRFLOW_CTX_EXECUTION_DATE=2025-07-18T14:07:41.957517+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-07-18T14:07:41.957517+00:00
+[2025-07-18T14:07:42.772+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-07-18T14:07:42.773+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python /app/scripts/ingest.py mode=ingest']
+[2025-07-18T14:07:42.778+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T14:07:43.685+0000] {subprocess.py:93} INFO - /app/scripts/ingest.py:5: UserWarning:
+[2025-07-18T14:07:43.687+0000] {subprocess.py:93} INFO - The version_base parameter is not specified.
+[2025-07-18T14:07:43.688+0000] {subprocess.py:93} INFO - Please specify a compatability version level, or None.
+[2025-07-18T14:07:43.689+0000] {subprocess.py:93} INFO - Will assume defaults for version 1.1
+[2025-07-18T14:07:43.689+0000] {subprocess.py:93} INFO -   @hydra.main(config_path="../config", config_name="config")
+[2025-07-18T14:07:43.930+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.9/site-packages/hydra/_internal/hydra.py:119: UserWarning: Future Hydra versions will no longer change working directory at job runtime by default.
+[2025-07-18T14:07:43.932+0000] {subprocess.py:93} INFO - See https://hydra.cc/docs/1.2/upgrades/1.1_to_1.2/changes_to_job_working_dir/ for more information.
+[2025-07-18T14:07:43.933+0000] {subprocess.py:93} INFO -   ret = run_job(
+[2025-07-18T14:07:45.563+0000] {subprocess.py:93} INFO - Fetching Adult dataset from OpenML...
+[2025-07-18T14:07:45.563+0000] {subprocess.py:93} INFO - ✔ Raw data saved to data/raw/adult.csv
+[2025-07-18T14:07:45.695+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-07-18T14:07:45.714+0000] {taskinstance.py:1322} INFO - Marking task as SUCCESS. dag_id=mlops_retrain_pipeline, task_id=ingest_data, execution_date=20250718T140741, start_date=20250718T140742, end_date=20250718T140745
+[2025-07-18T14:07:45.760+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2025-07-18T14:07:45.783+0000] {taskinstance.py:2582} INFO - 1 downstream tasks scheduled from follow-on schedule check

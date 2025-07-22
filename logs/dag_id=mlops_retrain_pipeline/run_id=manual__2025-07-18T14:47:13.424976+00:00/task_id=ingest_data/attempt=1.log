@@ -1,0 +1,37 @@
+[2025-07-18T14:47:14.277+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:47:13.424976+00:00 [queued]>
+[2025-07-18T14:47:14.282+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:47:13.424976+00:00 [queued]>
+[2025-07-18T14:47:14.284+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T14:47:14.284+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 2
+[2025-07-18T14:47:14.285+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2025-07-18T14:47:14.294+0000] {taskinstance.py:1304} INFO - Executing <Task(BashOperator): ingest_data> on 2025-07-18 14:47:13.424976+00:00
+[2025-07-18T14:47:14.297+0000] {standard_task_runner.py:55} INFO - Started process 187 to run task
+[2025-07-18T14:47:14.299+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'mlops_retrain_pipeline', 'ingest_data', 'manual__2025-07-18T14:47:13.424976+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/retrain_dag.py', '--cfg-path', '/tmp/tmpruzcvid0']
+[2025-07-18T14:47:14.301+0000] {standard_task_runner.py:83} INFO - Job 3: Subtask ingest_data
+[2025-07-18T14:47:14.349+0000] {task_command.py:389} INFO - Running <TaskInstance: mlops_retrain_pipeline.ingest_data manual__2025-07-18T14:47:13.424976+00:00 [running]> on host 9800c2871322
+[2025-07-18T14:47:14.395+0000] {taskinstance.py:1513} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=mlops_retrain_pipeline
+AIRFLOW_CTX_TASK_ID=ingest_data
+AIRFLOW_CTX_EXECUTION_DATE=2025-07-18T14:47:13.424976+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-07-18T14:47:13.424976+00:00
+[2025-07-18T14:47:14.396+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-07-18T14:47:14.396+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python /app/scripts/ingest.py mode=ingest']
+[2025-07-18T14:47:14.402+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T14:47:14.459+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-07-18T14:47:14.460+0000] {subprocess.py:93} INFO -   File "/app/scripts/ingest.py", line 1, in <module>
+[2025-07-18T14:47:14.460+0000] {subprocess.py:93} INFO -     import hydra
+[2025-07-18T14:47:14.460+0000] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'hydra'
+[2025-07-18T14:47:14.461+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-07-18T14:47:14.469+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 197, in execute
+    f"Bash command failed. The command returned a non-zero exit code {result.exit_code}."
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-07-18T14:47:14.471+0000] {taskinstance.py:1327} INFO - Marking task as UP_FOR_RETRY. dag_id=mlops_retrain_pipeline, task_id=ingest_data, execution_date=20250718T144713, start_date=20250718T144714, end_date=20250718T144714
+[2025-07-18T14:47:14.478+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 3 for task ingest_data (Bash command failed. The command returned a non-zero exit code 1.; 187)
+[2025-07-18T14:47:14.486+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2025-07-18T14:47:14.500+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check
